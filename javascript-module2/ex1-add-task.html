@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <ul id ="ourTasks"> </ul>    
+    <button id='addTask' onclick="addTask()">Add Task</button>
+    <span>Number of tasks is :</span><span id="numOfTasks">0</span>
+    
+    
+    <script>
+        
+        function addTask(){
+            
+            let taskName = prompt('Enter the task name please!');
+            let tasks = document.getElementById("ourTasks");
+            let taskLi = document.createElement("li");
+            let assignTaskName = document.createTextNode(taskName);
+
+            taskLi.appendChild(assignTaskName);
+            tasks.appendChild(taskLi);
+            tasks.insertBefore(taskLi, tasks.childNodes[0]);
+            incNumOfTasks();
+        }
+
+       let inc = 0;
+        
+        function incNumOfTasks(){
+            inc++;
+            let tasksNum = document.getElementById("numOfTasks");
+            tasksNum.innerHTML = inc;
+        }
+
+    </script>
+</body>
+</html>
