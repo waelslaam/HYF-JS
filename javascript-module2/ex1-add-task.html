@@ -7,16 +7,16 @@
 </head>
 <body>
 
-    <ul id ="ourTasks"> </ul>    
     <button id='addTask' onclick="addTask()">Add Task</button>
+    <input id='taskName' type="text"></input>
     <span>Number of tasks is :</span><span id="numOfTasks">0</span>
-    
+    <ul id ="ourTasks"> </ul>  
     
     <script>
         
         function addTask(){
             
-            let taskName = prompt('Enter the task name please!');
+            let taskName = document.getElementById('taskName').value;
             let tasks = document.getElementById("ourTasks");
             let taskLi = document.createElement("li");
             let assignTaskName = document.createTextNode(taskName);
@@ -24,6 +24,7 @@
             taskLi.appendChild(assignTaskName);
             tasks.appendChild(taskLi);
             tasks.insertBefore(taskLi, tasks.childNodes[0]);
+            
             incNumOfTasks();
         }
 
