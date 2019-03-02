@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<!-- The old version from the homework -->
+
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +12,7 @@
     <button id='addTask' onclick="addTask()">Add Task</button>
     <input id='taskName' type="text"></input>
     <span>Number of tasks is :</span><span id="numOfTasks">0</span>
-    <ul id ="ourTasks"> </ul>  
+    <ul id ="ourTasks"></ul>  
     
     <script>
         
@@ -24,7 +26,7 @@
             taskLi.appendChild(assignTaskName);
             tasks.appendChild(taskLi);
             tasks.insertBefore(taskLi, tasks.childNodes[0]);
-            
+
             incNumOfTasks();
         }
 
@@ -37,5 +39,223 @@
         }
 
     </script>
+</body>
+</html>-->
+
+<!-- The last version from the homework -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Cardo|Lato|Open+Sans" rel="stylesheet"> 
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+        .main-container {
+            height: 700px;
+            width: 100%;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('ds.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #984a59;
+            display: flex;
+            justify-content: center;
+            justify-content: space-around;
+            align-items: center;
+            font-family: 'Cardo', serif;
+            color: white;
+        }
+
+        .header span {
+            font-weight: 700;
+        }
+
+        .form {
+            background-color: white;
+            width: 70%;
+            font-family: 'Lato', sans-serif;
+            align-self: center;
+            opacity: 0.9;
+            margin-top: 70px;
+            border-radius: 5px;
+            box-shadow: 5px 5px 3px #aaaaaa; 
+        }
+        .form input, h2 {
+            margin-left: 10px;
+        }
+
+        .form ul {
+            height: auto;
+        }
+
+        .form h2 {
+            font-family: 'Cardo', serif;
+            opacity: 0.7;
+        }
+
+        #taskCounter {
+            color: #9b2f45;
+            font-weight: 700;
+        }
+        .newLiStyle {
+            background-color:rgb(216, 213, 213);
+            list-style-type : none;
+            width: 60%;
+            height: 30px;
+            border: 1px solid rgb(185, 171, 171);
+            padding-left: 10px;
+            margin-left:-28px;
+            color: #9b2f45;
+            box-shadow: 2px 5px rgb(131, 130, 130);
+            border-radius: 5px;
+        }
+
+        .delBtn {
+            float:right;
+        }
+
+        .delBtn:hover {
+            background-color: red;
+            color : white;
+            opacity: 0.7;
+            border-radius: 5px;
+        }
+
+    </style>
+
+
+</head>
+<body>
+    <div class="main-container">
+
+        <div class="header">
+            <h1>HackYourFuture</h1><span>JS-Module2-HW1</span><span>Wael Fato</span>
+        </div>
+
+
+        <div class="form">
+            <h2>NewTask</h2>
+
+            <input id="taskName" type="text">
+
+            <input id="addTask" type="button" value="Add Task">
+
+            <span style="padding-left:30px;">Number of tasks : </span><span id="taskCounter">0</span>
+
+            <h2>Tasks</h2>
+
+            <ul id="ourTasks">
+            </ul>
+
+        </div>
+
+    </div>
+
+    <script>
+    // Selecting Elements
+
+        let tasks = document.getElementById('ourTasks');
+        let addNewTask= document.getElementById ('addTask');
+        let newTaskName = document.querySelector('#taskName');
+        let numOfTask = document.querySelector('#taskCounter');
+
+
+
+    // AddNewTask  click event
+
+        addNewTask.addEventListener('click', addItem);
+
+
+
+
+    // addItem function()
+
+        function addItem(){
+
+    // get input value
+        let newItemName = newTaskName.value;
+
+    // create new li
+        let newLi = document.createElement('li');
+        newLi.className = 'newLiStyle';
+
+    // add textnode with our input value
+        let newLiText = document.createTextNode(newItemName);
+
+        newLi.appendChild(newLiText);
+
+    // add the new li into our ul
+
+        tasks.appendChild(newLi);
+
+    // adding the new item at the beginning of the list
+
+        tasks.insertBefore(newLi,tasks.childNodes[0]);
+
+    // adding Delete button to our li
+
+        let delButton = document.createElement('button');
+        delButton.className ='delBtn';
+        delButton.addEventListener('click', removeItem);
+
+        delButton.appendChild(document.createTextNode('X'));
+
+        newLi.appendChild(delButton);
+
+    // increase number of tasks
+
+        incNumOfTasks();
+
+    // clear the input box
+
+        clearIt();
+    }
+
+    // increse number of tasks function
+
+    let i = 0;
+
+    function incNumOfTasks(){
+        i++;
+        numOfTask.innerHTML = i;
+    }
+
+
+    // Remove task
+
+    function removeItem(e){
+        if (confirm('Are you sure ?')){
+            let li = e.target.parentElement;
+            tasks.removeChild(li); 
+            decNumOfTasks();
+        }
+    }
+
+
+    // decrease number of task
+
+    function decNumOfTasks(){
+        i--;
+        numOfTask.innerHTML = i;
+    }
+
+    // clear the input box
+    function clearIt(){
+        newTaskName.value="";
+    }
+
+    </script>
+
 </body>
 </html>
